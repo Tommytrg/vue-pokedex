@@ -1,18 +1,22 @@
 <template>
-  <div id="app">
-    <nav-button :page="AllPokemons" ></nav-button>
-    <nav-button :page="Search" ></nav-button>
-    <img src="./assets/pokemon_logo.png">
-    <router-view/>
+  <div>
+    <Search/>
+    <PokemonList/>
   </div>
 </template>
 
 <script>
-import NavButton from '@/components/generic/NavButton'
+import PokemonList from '@/components/PokemonList.vue'
+import Search from '@/components/Search.vue'
+
 export default {
-  name: 'App',
+  name: 'Home',
+  data () {
+    return {}
+  },
   components: {
-    'nav-button': NavButton
+    PokemonList,
+    Search
   }
 }
 </script>
@@ -25,9 +29,5 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-}
-
-img {
-  width: 300px;
 }
 </style>

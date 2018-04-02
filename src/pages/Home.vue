@@ -1,13 +1,23 @@
 <template>
-  <div id="app">
-    <img src="./assets/pokemon_logo.png">
-    <router-view/>
+  <div>
+    <Search/>
+    <PokemonList/>
   </div>
 </template>
 
 <script>
+import PokemonList from '@/components/PokemonList.vue'
+import Search from '@/components/Search.vue'
+
 export default {
-  name: 'App'
+  name: 'Home',
+  data () {
+    return {}
+  },
+  components: {
+    PokemonList,
+    Search
+  }
 }
 </script>
 
@@ -19,9 +29,5 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-}
-
-img {
-  width: 300px;
 }
 </style>

@@ -1,12 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import AllPokemons from '@/pages/AllPokemons'
-import Search from '@/pages/Search'
-import Types from '@/pages/Types'
-import TypeDetail from '@/pages/TypeDetail'
+
+import Home from '@/pages/Home'
 import Login from '@/pages/Login'
-import Signup from '@/pages/Signup'
 import MyPokemons from '@/pages/MyPokemons'
+import Search from '@/pages/Search'
+import Signup from '@/pages/Signup'
+import TypeDetail from '@/pages/TypeDetail'
+import Types from '@/pages/Types'
 
 Vue.use(Router)
 
@@ -14,8 +15,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'AllPokemons',
-      component: AllPokemons
+      name: 'Home',
+      component: Home
     },
     {
       path: '/buscar',

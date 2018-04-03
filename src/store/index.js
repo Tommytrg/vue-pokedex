@@ -10,17 +10,16 @@ const state = {
 
 const mutations = {
   RECEIVE_POKEMON (state, { pokemon }) {
-    console.log('POKEMON=>>>>', pokemon)
     state.pokemons.push(pokemon)
   }
 }
 
 const actions = {
   async FETCH_POKEMONS ({ commit }) {
-    const url = `https://pokeapi.co/api/v2/pokemon/?limit=20&offset=${state.pokemons.length}`
-    const data = await axios.get(url)
-    for (let result of data.data.results) {
-      let pokemon = await axios.get(result.url)
+    const size = state.pokemons.length
+    const url = `https://pokeapi.co/api/v2/pokemon`
+    for (let i = 1; i < 5; i += 1) {
+      let pokemon = await axios.get(`${url}/${size + i}`)
       commit('RECEIVE_POKEMON', { pokemon: pokemon.data })
     }
   }
@@ -29,7 +28,11 @@ const actions = {
 const getters = {
   pokemons: state => {
     return state.pokemons.map(data => {
-      return data
+      return {
+        name: data.name,
+        id: data.id,
+        types: data.types
+      }
     })
   }
 }

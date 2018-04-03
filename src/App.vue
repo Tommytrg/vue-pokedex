@@ -1,19 +1,13 @@
 <template>
   <div id="app">
-    <nav-button :page="AllPokemons" ></nav-button>
-    <nav-button :page="Search" ></nav-button>
     <img src="./assets/pokemon_logo.png">
     <router-view/>
   </div>
 </template>
 
 <script>
-import NavButton from '@/components/generic/NavButton'
 export default {
-  name: 'App',
-  components: {
-    'nav-button': NavButton
-  }
+  name: 'App'
 }
 </script>
 

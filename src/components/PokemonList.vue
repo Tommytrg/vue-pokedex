@@ -2,8 +2,13 @@
   <div>
     <div v-if="arePokemons()">
       <div v-for="pokemon in pokemons" :key="pokemon.name">
-        {{pokemon.name}}
+        <PokemonItem
+          :name="pokemon.name"
+          :id="pokemon.id"
+          :types="pokemon.types"
+        />
       </div>
+      <button @click="loadMorePokemons()">Load More Pokemons!</button>
     </div>
     <div v-else>
         LOADING POKEMONS...
@@ -12,6 +17,8 @@
 </template>
 
 <script>
+import PokemonItem from '@/components/PokemonItem.vue'
+
 export default {
   name: 'PokemonList',
   data () {
@@ -20,6 +27,9 @@ export default {
   methods: {
     arePokemons: function () {
       return this.$store.getters.pokemons.length
+    },
+    loadMorePokemons: function () {
+      this.$store.dispatch('FETCH_POKEMONS')
     }
   },
   computed: {
@@ -29,6 +39,9 @@ export default {
   },
   created: function () {
     this.$store.dispatch('FETCH_POKEMONS')
+  },
+  components: {
+    PokemonItem
   }
 }
 </script>

@@ -1,24 +1,30 @@
 <template>
-  <router-link :to="{page}" :exact-active-class="_current" title="{label}">{label}</router-link>
+  <div>
+      <router-link class="button" :to="'page'" title='label'>{{label}}</router-link>
+  </div>
+
 </template>
 
 <script>
 export default {
-  props: ['page', 'label']
+  props: ['page','label']
 }
 </script>
 
 <style scoped>
-  a{
+  .button{
     background: none;
     outline: none;
     text-decoration: none;
     border: none;
-    color: green;
-    font-size: 12px;
-  }
-
-  a._current{
-    color: red;
+    color: #242424;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: #e1e1e1;
+    border: solid 1px #e1e1e1;
+    min-width: 100px;
+    min-height: 50px;
+    padding: .5rem .75rem;
+    border-radius: 3px;
   }
 </style>

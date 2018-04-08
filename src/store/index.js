@@ -5,7 +5,8 @@ import axios from 'axios'
 Vue.use(Vuex)
 
 const state = {
-  pokemons: []
+  pokemons: [],
+  user: null
 }
 
 const mutations = {
@@ -34,6 +35,9 @@ const getters = {
         types: data.types
       }
     })
+  },
+  user: state => {
+    return state.user
   }
 }
 

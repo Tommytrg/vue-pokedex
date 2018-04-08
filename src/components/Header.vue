@@ -50,6 +50,9 @@ export default {
   .logo{
     padding: 2rem;
     align-self: center;
+    img{
+      max-width: 200px;
+    }
   }
   .navigation{
     display: grid;

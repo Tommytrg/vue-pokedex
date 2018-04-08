@@ -1,13 +1,13 @@
 <template>
   <div>
-      <router-link class="button" :to="'page'" title='label'>{{label}}</router-link>
+      <router-link class="button" :to="page" title='label'>{{label}}</router-link>
   </div>
 
 </template>
 
 <script>
 export default {
-  props: ['page','label']
+  props: ['page', 'label']
 }
 </script>
 

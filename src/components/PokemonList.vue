@@ -1,12 +1,14 @@
 <template>
   <div>
     <div v-if="arePokemons()">
-      <div v-for="pokemon in pokemons" :key="pokemon.name">
-        <PokemonItem
-          :name="pokemon.name"
-          :id="pokemon.id"
-          :types="pokemon.types"
-        />
+      <div class="grid">
+        <div v-for="pokemon in pokemons" :key="pokemon.name">
+          <PokemonItem
+            :name="pokemon.name"
+            :id="pokemon.id"
+            :types="pokemon.types"
+          />
+        </div>
       </div>
       <button @click="loadMorePokemons()">Load More Pokemons!</button>
     </div>
@@ -46,6 +48,11 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped lang="less">
+  .grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, 280px);
+    grid-gap: 20px;
+    margin: 0 1rem;
+  }
 </style>

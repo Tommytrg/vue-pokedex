@@ -1,12 +1,6 @@
 <template>
   <div class="item">
     <p class="name">{{name}}</p>
-    <p class="hitpoints">HITPOINTS</p>
-    <div class="type">
-      <div v-for="type in pokemonTypes" :key="type">
-        <i :src="typeIcon(type)">{{type}}</i>
-      </div>
-    </div>
     <img class="picture" :src="pokemonImg" :alt="name">
     <p></p>
   </div>
@@ -18,12 +12,16 @@ export default {
   props: [
     'name',
     'id',
-    'types'
+    'url',
   ],
   computed: {
     pokemonImg: function () {
-      let index = `${this.id}`
-      while (index.length < 3) index = 0 + index
+      if(!this.url) return null;
+      var arr = this.url.split('/')
+      let index = arr[arr.length - 2]
+      while (index.length < 3) {
+        index = "0"+ index;
+      }
       return `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${index}.png`
     },
     pokemonTypes: function () {

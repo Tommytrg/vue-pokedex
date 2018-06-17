@@ -6,11 +6,10 @@
           <PokemonItem
             :name="pokemon.name"
             :id="pokemon.id"
-            :types="pokemon.types"
+            :url="pokemon.url"
           />
         </div>
       </div>
-      <button @click="loadMorePokemons()">Load More Pokemons!</button>
     </div>
     <div v-else>
         LOADING POKEMONS...
@@ -24,14 +23,29 @@ import PokemonItem from '@/components/PokemonItem.vue'
 export default {
   name: 'PokemonList',
   data () {
-    return {}
+    return {
+      bottom: false,
+      offset: 0
+    }
   },
   methods: {
     arePokemons: function () {
-      return this.$store.getters.pokemons.length
+      return this.$store.getters.pokemons.length;
     },
-    loadMorePokemons: function () {
-      this.$store.dispatch('FETCH_POKEMONS')
+    bottomVisible: function () {
+      const scrollY = window.scrollY;
+      const visible = document.documentElement.clientHeight;
+      const pageHeight = document.documentElement.scrollHeight;
+      const bottomOfPage = visible + scrollY >= pageHeight
+      return bottomOfPage || pageHeight < visible
+    },
+  },
+  watch: {
+    bottom(bottom) {
+      if(bottom) {
+        this.offset = this.$store.getters.pokemons.length;
+        this.$store.dispatch('FETCH_POKEMONS', this.offset)
+      }
     }
   },
   computed: {
@@ -40,7 +54,10 @@ export default {
     }
   },
   created: function () {
-    this.$store.dispatch('FETCH_POKEMONS')
+    this.$store.dispatch('FETCH_POKEMONS', this.offset)
+    window.addEventListener('scroll', () => {
+      this.bottom = this.bottomVisible()
+    })
   },
   components: {
     PokemonItem
